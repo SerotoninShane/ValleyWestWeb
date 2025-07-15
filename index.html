@@ -7,6 +7,7 @@
     <meta name="keywords" content="web design, web development, SEO, digital marketing, Arizona, Valley West Web, e-commerce, UX design">
     <meta name="author" content="Valley West Web">
     <title>Valley West Web | Professional Web Design & Development</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Squada+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" href="favicon.png">
 </head>
@@ -15,15 +16,27 @@
 
     <header>
         <div class="container">
-            <h1 class="logo" aria-label="Valley West Web">Valley West Web</h1>
-            <p class="tagline">Professional Web Design & Development</p>
-            <nav aria-label="Main navigation">
-                <ul>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#pricing">Pricing</a></li>
-                    <li><a href="#portfolio">Portfolio</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
+            <div class="logo-wrapper" aria-label="Valley West Web">
+            <img src="assets/logo.svg" alt="Valley West Web logo" class="logo-img" />
+            <h1 class="company-name">Valley West Web</h1>
+            <span class="llc">LLC</span>
+            </div>
+            <div class="menu-container">
+            <button class="hamburger-btn" id="hamburgerBtn">
+                <div class="hamburger-lines">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </button>
+
+            <nav class="dropdown-menu" id="dropdownMenu" aria-label="Main navigation">
+            <ul>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
             </nav>
         </div>
     </header>

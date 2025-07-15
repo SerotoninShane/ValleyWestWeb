@@ -13,3 +13,11 @@ document.querySelector('.contact-form').addEventListener('submit', function (e) 
   alert('Thank you for your project request! We will contact you within 24 hours to discuss your requirements.');
   this.reset();
 });
+
+const hamburgerBtn = document.getElementById('hamburgerBtn');
+const dropdownMenu = document.getElementById('dropdownMenu');
+
+hamburgerBtn.addEventListener('click', () => {
+  hamburgerBtn.classList.toggle('active');
+  dropdownMenu.classList.toggle('active');
+});
