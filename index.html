@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Valley West Web</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- Intro Overlay -->
+  <div id="introOverlay" aria-hidden="true">
+    <div class="logo-animation">
+      <img src="Assets/vww.png" alt="Valley West Web Logo" />
+      <div class="intro-text">VALLEY WEST WEB</div>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <!-- Blueprint Grid -->
+    <div class="blueprint-grid">
+      <div class="grid-line grid-h1"></div>
+      <div class="grid-line grid-h2"></div>
+      <div class="grid-line grid-h3"></div>
+      <div class="grid-line grid-v1"></div>
+      <div class="grid-line grid-v2"></div>
+      <div class="grid-line grid-v3"></div>
+      <div class="dimension-line dim-1"></div>
+      <div class="dimension-line dim-2"></div>
+    </div>
+
+    <div class="blueprint-shape"></div>
+
+    <!-- Sketch Lines -->
+    <div class="sketch-line line-1"></div>
+    <div class="sketch-line line-2"></div>
+    <div class="sketch-line line-3"></div>
+
+    <!-- Logo Section -->
+    <div class="logo-section">
+      <div class="logo">
+        <img src="Assets/vww.png" alt="Valley West Web Logo" />
+      </div>
+      <div class="vertical-logo">VALLEY WEST WEB</div>
+    </div>
+
+    <!-- Header & Navigation -->
+    <header>
+      <nav>
+        <div class="hamburger" role="button" tabindex="0" aria-label="Toggle menu" onclick="toggleMenu()" onkeydown="if(event.key==='Enter') toggleMenu()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="#" class="nav-link active" data-page="home">Home</a></li>
+          <li><a href="#" class="nav-link" data-page="services">Services</a></li>
+          <li><a href="#" class="nav-link" data-page="about">About</a></li>
+          <li><a href="#" class="nav-link" role="button" onclick="openModal()">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main id="mainContent" class="main-content">
+      <!-- Dynamic content injected here -->
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      &copy; VALLEY WEST WEB LLC 2025
+    </footer>
+  </div>
+
+  <!-- Contact Modal -->
+  <div id="contactModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="contactModalTitle" onclick="closeModalOnBackdrop(event)">
+    <div class="modal-content">
+      <header class="modal-header">
+        <h2 id="contactModalTitle" class="modal-title">Let's Build Something</h2>
+        <button class="modal-close" aria-label="Close contact form" onclick="closeModal()">×</button>
+      </header>
+
+      <section class="modal-body">
+        <!-- Blueprint & Sketch visuals -->
+        <div class="modal-blueprint">
+          <div class="modal-grid-line modal-grid-h"></div>
+          <div class="modal-grid-line modal-grid-v"></div>
+          <div class="modal-grid-line modal-grid-v2"></div>
+        </div>
+        <div class="modal-sketch sketch-1"></div>
+        <div class="modal-sketch sketch-2"></div>
+
+        <form class="contact-form" onsubmit="submitForm(event)" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="firstName" class="form-label">First Name <span aria-hidden="true" class="required">*</span></label>
+              <input type="text" id="firstName" name="firstName" class="form-input" required />
+            </div>
+            <div class="form-group">
+              <label for="lastName" class="form-label">Last Name <span aria-hidden="true" class="required">*</span></label>
+              <input type="text" id="lastName" name="lastName" class="form-input" required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email" class="form-label">Email <span aria-hidden="true" class="required">*</span></label>
+              <input type="email" id="email" name="email" class="form-input" required />
+            </div>
+            <div class="form-group">
+              <label for="phone" class="form-label">Phone Number</label>
+              <input type="tel" id="phone" name="phone" class="form-input" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="company" class="form-label">Company/Organization</label>
+            <input type="text" id="company" name="company" class="form-input" />
+          </div>
+
+          <div class="form-group">
+            <label for="projectType" class="form-label">Project Type</label>
+            <select id="projectType" name="projectType" class="form-select">
+              <option value="">Select Project Type</option>
+              <option value="website">New Website</option>
+              <option value="redesign">Website Redesign</option>
+              <option value="ecommerce">E-commerce</option>
+              <option value="webapp">Web Application</option>
+              <option value="maintenance">Website Maintenance</option>
+              <option value="consultation">Consultation</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="budget" class="form-label">Project Budget</label>
+            <select id="budget" name="budget" class="form-select">
+              <option value="">Select Budget Range</option>
+              <option value="under-5k">Under $5,000</option>
+              <option value="5k-10k">$5,000 - $10,000</option>
+              <option value="10k-25k">$10,000 - $25,000</option>
+              <option value="25k-50k">$25,000 - $50,000</option>
+              <option value="over-50k">$50,000+</option>
+              <option value="discuss">Let's Discuss</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="timeline" class="form-label">Project Timeline</label>
+            <select id="timeline" name="timeline" class="form-select">
+              <option value="">Select Timeline</option>
+              <option value="asap">ASAP</option>
+              <option value="1-month">Within 1 Month</option>
+              <option value="2-3-months">2-3 Months</option>
+              <option value="3-6-months">3-6 Months</option>
+              <option value="6-months-plus">6+ Months</option>
+              <option value="flexible">Flexible</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="message" class="form-label">Project Details <span aria-hidden="true" class="required">*</span></label>
+            <textarea id="message" name="message" class="form-textarea" placeholder="Tell us about your project vision, goals, and any specific requirements..." required></textarea>
+          </div>
+
+          <div class="checkbox-group">
+            <input type="checkbox" id="newsletter" name="newsletter" class="checkbox-input" />
+            <label for="newsletter" class="checkbox-label">
+              I'd like to receive updates about Valley West Web services and web development insights.
+            </label>
+          </div>
+
+          <div class="checkbox-group">
+            <input type="checkbox" id="terms" name="terms" class="checkbox-input" required />
+            <label for="terms" class="checkbox-label">
+              I agree that Valley West Web may contact me regarding this inquiry. <span aria-hidden="true" class="required">*</span>
+            </label>
+          </div>
+
+          <button type="submit" class="form-submit">Send Message</button>
+        </form>
+      </section>
+    </div>
+  </div>
+
+  <!-- Founder Modal -->
+  <div id="founderModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="founderModalTitle" onclick="closeModalOnBackdrop(event)">
+    <div class="modal-content">
+      <header class="modal-header">
+        <h2 id="founderModalTitle" class="modal-title">Meet the Founder</h2>
+        <button class="modal-close" aria-label="Close founder info" onclick="closeFounderModal()">×</button>
+      </header>
+
+      <section class="modal-body">
+        <h3>Shane Bogue</h3>
+        <p>Hi, I'm Shane Bogue, founder of Valley West Web. I'm a full-stack developer with a B.S. in Computer Science and a passion for creating clean, user-friendly digital experiences.</p>
+        <blockquote class="founder-quote">
+          "I started this company to help people like you—builders, creators, and business owners—get online quickly, affordably, and with confidence."
+        </blockquote>
+        <p>I believe every business is different, and your website should reflect that. That's why we don't use one-size-fits-all templates. Instead, we collaborate to create something uniquely yours.</p>
+        <p>When I'm not coding, you can find me exploring Arizona's beautiful landscapes or experimenting with new web technologies to bring even better solutions to our clients.</p>
+      </section>
+    </div>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
