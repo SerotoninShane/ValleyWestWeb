@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Valley West Web</title>
   <link rel="stylesheet" href="css/style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.js"></script>
 </head>
 <body>
 
@@ -29,6 +30,7 @@
       <div class="dimension-line dim-1"></div>
       <div class="dimension-line dim-2"></div>
     </div>
+          <div id="transparent-sphere"></div>
 
     <div class="blueprint-shape"></div>
 
@@ -205,5 +207,88 @@
   </div>
 
   <script src="js/script.js"></script>
+<script>
+const transparentSphereSketch = (sketch) => {
+    let txt;
+
+    sketch.setup = () => {
+        let canvas = sketch.createCanvas(sketch.windowWidth, sketch.windowHeight, sketch.WEBGL);
+        canvas.parent('transparent-sphere');
+
+        // Create high-res graphics buffer for text texture
+        let bufferWidth = 2000;
+        let bufferHeight = 1000;
+        let name = sketch.createGraphics(bufferWidth, bufferHeight);
+        name.textFont('Courier New');
+        name.textAlign(sketch.CENTER, sketch.CENTER);
+        name.textSize(110);
+
+        let customText = "VALLEYWESTWEB";
+
+        // Add shadow
+        name.fill(0, 0, 0, 100);
+        name.text(customText, name.width / 2 + 3, name.height / 2 + 3);
+
+        // Main text
+        name.fill(220);
+        name.text(customText, name.width / 2, name.height / 2);
+
+        txt = name.get();
+        name.remove();
+    };
+
+    sketch.draw = () => {
+        sketch.clear();
+
+        // Drop it down a little
+        sketch.translate(0, 60, 0);
+
+        // Apply texture
+        sketch.noStroke();
+        sketch.texture(txt);
+
+        // Slow spin
+        sketch.rotateY(sketch.millis() * 0.0005);
+
+        // Scale sphere based on screen size
+
+        // Define breakpoints
+        let maxWidth = 1920;   // fullscreen
+        let minWidth = 400;    // mobile
+
+        // Define sphere size fractions
+        let maxFraction = 0.2; // 20% of smaller dimension
+        let minFraction = 0.16; // 12% on small screens
+
+        // Calculate fraction based on current width
+        let t = sketch.constrain((sketch.width - minWidth) / (maxWidth - minWidth), 0, 1);
+        let sphereFraction = sketch.lerp(minFraction, maxFraction, t);
+
+        let sphereSize = Math.min(sketch.width, sketch.height) * sphereFraction;
+
+        // Back face
+        sketch.push();
+        sketch.fill(255, 255, 255, 10);
+        sketch.drawingContext.enable(sketch.drawingContext.CULL_FACE);
+        sketch.drawingContext.cullFace(sketch.drawingContext.BACK);
+        sketch.sphere(sphereSize);
+        sketch.pop();
+
+        // Front face
+        sketch.push();
+        sketch.drawingContext.enable(sketch.drawingContext.CULL_FACE);
+        sketch.drawingContext.cullFace(sketch.drawingContext.FRONT);
+        sketch.sphere(sphereSize);
+        sketch.pop();
+    };
+
+    // Handle window resize
+    sketch.windowResized = () => {
+        sketch.resizeCanvas(sketch.windowWidth, sketch.windowHeight);
+    };
+};
+new p5(transparentSphereSketch);
+</script>
+
 </body>
 </html>

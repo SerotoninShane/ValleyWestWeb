@@ -37,7 +37,7 @@ body::before {
     left: 50%;
     width: 800px;
     height: 800px;
-    background: url('Assets/vww.png') no-repeat center;
+    background: url('../Assets/vww.png') no-repeat center;
     background-size: contain;
     opacity: 0.04;
     transform: translate(-50%, -50%);
@@ -121,7 +121,7 @@ header {
     display: flex;
     list-style: none;
     gap: 60px;
-    font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+    font-size: clamp(1.125rem, 2.5vw, 2rem);
 }
 
 .nav-menu li a {
@@ -189,16 +189,17 @@ header {
 
 
 .logo {
+    position: relative;
     font-size: clamp(4rem, 8vw, 7.5rem);
     font-weight: bold;
     color: #2a2a2a;
-    transform: translateY(-15px);
+    top: -12px;
     margin-left: 5px;
 }
 
 
 .logo-section .logo img {
-  width:clamp(4rem, 8vw, 7.5rem);
+  width:7.5rem;
   filter: brightness(0) saturate(100%) invert(13%) sepia(3%) saturate(0%) hue-rotate(176deg) brightness(94%) contrast(93%);
 }
 
@@ -245,22 +246,21 @@ header {
 .story-card,
 .hours-card {
     position: relative;
-    transform: rotate(-2deg);
+    /* transform: rotate(-2deg); */
     width: fit-content;
 }
 
 .story,
 .hours {
-    font-size: clamp(0.8rem, 1.2vw, 0.875rem);
+    font-size: clamp(0.8rem, 1.2vw, 1rem);
     line-height: 1.5;
     color: #2a2a2a;
     border: 2px solid #2a2a2a;
     padding: 20px;
-    max-width: 260px;
+    max-width: 280px;
     box-shadow: 4px 4px 0px #2a2a2a;
     transition: all 0.3s ease;
-    backdrop-filter: blur(6px);
-    background-color: rgba(255, 255, 255, 0.767);
+    backdrop-filter: blur(1px);
     border-radius: 8px;
     position: relative;
     z-index: 10;
@@ -275,7 +275,7 @@ header {
 .story h3,
 .hours h3 {
     margin-bottom: 12px;
-    font-size: clamp(0.9rem, 1.4vw, 1rem);
+    font-size: clamp(0.9rem, 1.4vw, 1.3rem);
     text-decoration: underline;
     font-weight: bold;
 }
@@ -304,7 +304,7 @@ header {
     padding: 8px 12px;
     background: #2a2a2a;
     color: white;
-    font-size: clamp(0.7rem, 1vw, 0.75rem);
+    font-size: clamp(0.7rem, 1vw, 0.95rem);
     font-weight: bold;
     text-align: center;
     letter-spacing: 1px;
@@ -383,34 +383,31 @@ header {
     text-transform: uppercase;
     letter-spacing: 1px;
     animation: orbit 30s linear infinite;
+    z-index: -1;
 }
 
 .orbit-item:nth-child(1) {
     top: 10%;
     left: 50%;
     transform: translateX(-50%);
-    animation-delay: 0s;
 }
 
 .orbit-item:nth-child(2) {
     top: 50%;
     right: 10%;
     transform: translateY(-50%);
-    animation-delay: -10s;
 }
 
 .orbit-item:nth-child(3) {
     bottom: 10%;
     left: 50%;
     transform: translateX(-50%);
-    animation-delay: -20s;
 }
 
 .orbit-item:nth-child(4) {
     top: 50%;
     left: 10%;
-    transform: translateY(-50%);
-    animation-delay: -15s;
+
 }
 
 /* ================================
@@ -421,19 +418,20 @@ header {
     text-align: left;
     position: relative;
     padding-right: 4vh;
+    max-width: 550px;
 }
 
 .right-section h1 {
-    font-size: clamp(1.75rem, 4vw, 2.625rem);
+    font-size: clamp(1.75rem, 3vw, 2.825rem);
     font-weight: bold;
     margin-bottom: 25px;
     color: #2a2a2a;
-    transform: rotate(1deg);
+    /* transform: rotate(1deg); */
     line-height: 1.2;
 }
 
 .right-section h2 {
-    font-size: clamp(1rem, 2vw, 1.125rem);
+    font-size: clamp(1rem, 2vw, 1.325rem);
     font-weight: bold;
     margin-bottom: 15px;
     color: #2a2a2a;
@@ -443,11 +441,16 @@ header {
 
 .right-section p {
     font-size: clamp(0.875rem, 1.8vw, 1rem);
-    line-height: 1.6;
+    line-height: 1.2;
     margin-bottom: 20px;
     color: #4a4a4a;
     max-width: 400px;
     font-weight: 500;
+}
+
+.right-section .italics {
+    font-style: italic; 
+    font-weight: 1000;
 }
 
 /* Services List */
@@ -458,13 +461,13 @@ header {
 }
 
 .services-list li {
-    font-size: clamp(0.8rem, 1.2vw, 0.875rem);
-    line-height: 1.6;
+    font-size: clamp(0.8rem, 1.2vw, 1rem);
+    line-height: 1.4;
     color: #4a4a4a;
     margin-bottom: 8px;
     position: relative;
     padding-left: 20px;
-    font-weight: 500;
+    font-weight: 800;
 }
 
 .services-list li::before {
@@ -488,7 +491,7 @@ header {
     padding: 16px 20px;
     font-size: clamp(0.8rem, 1.2vw, 0.875rem);
     line-height: 1.8;
-    transform: rotate(2deg);
+    /* transform: rotate(2deg); */
     width: fit-content;
     border: 2px solid #2a2a2a;
     transform-origin: bottom right;
@@ -542,7 +545,7 @@ header {
     color: #2a2a2a;
     border: 2px solid #2a2a2a;
     padding: 12px 24px;
-    font-size: clamp(0.8rem, 1.2vw, 0.875rem);
+    font-size: clamp(0.8rem, 1.2vw, 1rem);
     font-weight: bold;
     cursor: pointer;
     transform: rotate(1deg);
@@ -750,7 +753,7 @@ header {
     display: none;
     position: fixed;
     inset: 0;
-    z-index: 1000;
+    z-index: 1005;
     background-color: rgba(42, 42, 42, 0.4);
     backdrop-filter: blur(10px);
     animation: fadeIn 0.3s ease;
@@ -914,7 +917,7 @@ header {
     width: 100%;
     height: 100vh;
     pointer-events: none;
-    z-index: 1;
+    z-index: -1;
 }
 
 .grid-line {
@@ -1033,7 +1036,7 @@ header {
     content: "";
     position: absolute;
     inset: 0;
-    background: url('topography.svg') repeat;
+    background: url('../Assets/topography.svg') repeat;
     opacity: 0.1;
     pointer-events: none;
     z-index: 1;
@@ -1046,7 +1049,7 @@ header {
 }
 
 #introOverlay .logo-animation img {
-    width: 200px;
+    width: 300px;
     filter: brightness(0) saturate(100%) invert(30%) sepia(10%) saturate(100%) hue-rotate(170deg) brightness(60%) contrast(90%);
     animation: logoZoomFade 1s ease forwards;
     z-index: 2;
@@ -1186,14 +1189,23 @@ footer {
     }
 }
 
-@keyframes orbit {
-    from {
+/* @keyframes orbit {
+    0% {
         transform: rotate(0deg) translateX(clamp(120px, 15vw, 180px)) rotate(0deg);
+        opacity: 1; 
+        filter: blur(0px);
     }
-    to {
-        transform: rotate(360deg) translateX(clamp(120px, 15vw, 180px)) rotate(-360deg);
+    50% {
+        transform: rotate(180deg) translateX(clamp(120px, 15vw, 180px)) rotate(-180deg) scale(0.8);
+        opacity: 1; 
+        filter: blur(1px); 
     }
-}
+    100% {
+        transform: rotate(360deg) translateX(clamp(120px, 15vw, 180px)) rotate(-360deg) scale(1);
+        opacity: 1; 
+        filter: blur(0px); 
+    }
+} */
 
 @keyframes fadeIn {
     from { 
@@ -1246,7 +1258,7 @@ footer {
    MEDIA QUERIES - MOBILE (768px and below)
    ================================ */
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
     
     /* ========== HEADER & NAVIGATION ========== */
     header {
@@ -1488,3 +1500,21 @@ footer {
         font-size: clamp(0.875rem, 3.5vw, 0.9375rem);
     }
 }
+
+
+        #transparent-sphere {
+            /* Flexbox to center the sphere within its container */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%; /* Adjust height as needed */
+            position: absolute; /* Position the canvas above other elements */
+            top: 0;
+            left: 0;
+            z-index: 1002; /* Place it in the background */
+            pointer-events: none; /* Allows clicks to pass through to elements behind it */
+            animation: pulse 6s ease-in-out infinite;
+        }
+
+        /* Adjust the main content to be on top of the canvas */
