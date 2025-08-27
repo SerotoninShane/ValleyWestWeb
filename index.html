@@ -1,11 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Basic Meta -->
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Valley West Web</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Valley West Web | Arizona Web Design & Development</title>
+  <meta name="description" content="Valley West Web builds modern websites, web apps, and e-commerce solutions tailored to your business goals." />
+  <meta name="author" content="Valley West Web" />
+
+  <!-- SEO Meta -->
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://valleywestweb.com/" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="Assets/vww.png" type="image/png" />
+
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://valleywestweb.com/" />
+  <meta property="og:title" content="Valley West Web | Arizona Web Design & Development" />
+  <meta property="og:description" content="Valley West Web builds modern websites, web apps, and e-commerce solutions tailored to your business goals." />
+  <meta property="og:image" content="https://valleywestweb.com/Assets/vww.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Valley West Web | Arizona Web Design & Development" />
+  <meta name="twitter:description" content="Valley West Web builds modern websites, web apps, and e-commerce solutions tailored to your business goals." />
+  <meta name="twitter:image" content="https://valleywestweb.com/Assets/vww.png" />
+
+<!-- Schema.org Logo (JSON-LD) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebDesignCompany",
+  "name": "Valley West Web",
+  "url": "https://valleywestweb.com",
+  "logo": "https://valleywestweb.com/Assets/vww.png",
+  "description": "Valley West Web LLC creates affordable, custom websites for entrepreneurs and small businesses across the Valley and beyond. We focus on collaborative design, transparent processes, and client-focused solutions.",
+  "founder": {
+    "@type": "Person",
+    "name": "Shane Bogue"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "email": "valleywestweb@gmail.com",
+    "telephone": "+1-623-445-1434",
+    "contactType": "customer service",
+    "areaServed": "US",
+    "availableLanguage": "English"
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "13208 W Monte Vista Dr",
+    "addressLocality": "Goodyear",
+    "addressRegion": "AZ",
+    "postalCode": "85395",
+    "addressCountry": "US"
+  },
+  "hasMap": "https://www.google.com/maps/search/?api=1&query=13208+W+Monte+Vista+Dr,+Goodyear,+AZ+85395",
+  "sameAs": []
+}
+</script>
+
   <link rel="stylesheet" href="css/style.css" />
-  <script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.js"></script>
 </head>
 <body>
 
@@ -16,7 +73,7 @@
       <div class="intro-text">VALLEY WEST WEB</div>
     </div>
   </div>
-
+          <div id="transparent-sphere"></div>
   <div class="container">
 
     <!-- Blueprint Grid -->
@@ -30,7 +87,6 @@
       <div class="dimension-line dim-1"></div>
       <div class="dimension-line dim-2"></div>
     </div>
-          <div id="transparent-sphere"></div>
 
     <div class="blueprint-shape"></div>
 
@@ -55,12 +111,16 @@
           <span></span>
           <span></span>
         </div>
-        <ul class="nav-menu" id="navMenu">
-          <li><a href="#" class="nav-link active" data-page="home">Home</a></li>
-          <li><a href="#" class="nav-link" data-page="services">Services</a></li>
-          <li><a href="#" class="nav-link" data-page="about">About</a></li>
-          <li><a href="#" class="nav-link" role="button" onclick="openModal()">Contact</a></li>
-        </ul>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="" class="nav-link active" data-page="home">Home</a></li>
+        <li><a href="" class="nav-link" data-page="services">Services</a></li>
+        <li><a href="" class="nav-link" data-page="about">About</a></li>
+        <li>
+          <a href="" class="nav-link" role="button" onclick="openModal(); return false;">
+            Contact
+          </a>
+        </li>
+      </ul>
       </nav>
     </header>
 
@@ -207,88 +267,9 @@
   </div>
 
   <script src="js/script.js"></script>
-<script>
-const transparentSphereSketch = (sketch) => {
-    let txt;
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.js"></script>
+  <script src="js/transparent-sphere.js"></script>
 
-    sketch.setup = () => {
-        let canvas = sketch.createCanvas(sketch.windowWidth, sketch.windowHeight, sketch.WEBGL);
-        canvas.parent('transparent-sphere');
-
-        // Create high-res graphics buffer for text texture
-        let bufferWidth = 2000;
-        let bufferHeight = 1000;
-        let name = sketch.createGraphics(bufferWidth, bufferHeight);
-        name.textFont('Courier New');
-        name.textAlign(sketch.CENTER, sketch.CENTER);
-        name.textSize(110);
-
-        let customText = "VALLEYWESTWEB";
-
-        // Add shadow
-        name.fill(0, 0, 0, 100);
-        name.text(customText, name.width / 2 + 3, name.height / 2 + 3);
-
-        // Main text
-        name.fill(220);
-        name.text(customText, name.width / 2, name.height / 2);
-
-        txt = name.get();
-        name.remove();
-    };
-
-    sketch.draw = () => {
-        sketch.clear();
-
-        // Drop it down a little
-        sketch.translate(0, 60, 0);
-
-        // Apply texture
-        sketch.noStroke();
-        sketch.texture(txt);
-
-        // Slow spin
-        sketch.rotateY(sketch.millis() * 0.0005);
-
-        // Scale sphere based on screen size
-
-        // Define breakpoints
-        let maxWidth = 1920;   // fullscreen
-        let minWidth = 400;    // mobile
-
-        // Define sphere size fractions
-        let maxFraction = 0.2; // 20% of smaller dimension
-        let minFraction = 0.16; // 12% on small screens
-
-        // Calculate fraction based on current width
-        let t = sketch.constrain((sketch.width - minWidth) / (maxWidth - minWidth), 0, 1);
-        let sphereFraction = sketch.lerp(minFraction, maxFraction, t);
-
-        let sphereSize = Math.min(sketch.width, sketch.height) * sphereFraction;
-
-        // Back face
-        sketch.push();
-        sketch.fill(255, 255, 255, 10);
-        sketch.drawingContext.enable(sketch.drawingContext.CULL_FACE);
-        sketch.drawingContext.cullFace(sketch.drawingContext.BACK);
-        sketch.sphere(sphereSize);
-        sketch.pop();
-
-        // Front face
-        sketch.push();
-        sketch.drawingContext.enable(sketch.drawingContext.CULL_FACE);
-        sketch.drawingContext.cullFace(sketch.drawingContext.FRONT);
-        sketch.sphere(sphereSize);
-        sketch.pop();
-    };
-
-    // Handle window resize
-    sketch.windowResized = () => {
-        sketch.resizeCanvas(sketch.windowWidth, sketch.windowHeight);
-    };
-};
-new p5(transparentSphereSketch);
-</script>
 
 </body>
 </html>

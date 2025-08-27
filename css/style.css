@@ -1501,20 +1501,17 @@ footer {
     }
 }
 
-
-        #transparent-sphere {
-            /* Flexbox to center the sphere within its container */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            height: 100%; /* Adjust height as needed */
-            position: absolute; /* Position the canvas above other elements */
-            top: 0;
-            left: 0;
-            z-index: 1002; /* Place it in the background */
-            pointer-events: none; /* Allows clicks to pass through to elements behind it */
-            animation: pulse 6s ease-in-out infinite;
-        }
-
-        /* Adjust the main content to be on top of the canvas */
+#transparent-sphere {
+    position: absolute;
+    top: 0;
+    left: 0; /* Move origin to horizontal center */
+    transform: translateX(-50%); /* Center the canvas perfectly */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1002;
+    pointer-events: none;
+    /* animation: pulse 6s ease-in-out infinite; */
+}

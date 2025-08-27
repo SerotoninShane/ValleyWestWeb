@@ -1,14 +1,28 @@
-// Page Navigation Management
 class PageManager {
     constructor(soundManager, ui) {
         this.soundManager = soundManager;
         this.ui = ui;
         this.currentPage = 'home';
         this.isTransitioning = false;
+
+        // Show the page based on the current URL path
+        const path = window.location.pathname.replace(/^\/|\/$/g, '') || 'home';
+        if (window.pageData[path]) {
+            this.showPage(path, false);
+        }
+
+        // Handle browser back/forward
+        window.addEventListener('popstate', (event) => {
+            const pageId = (event.state && event.state.page) || 'home';
+            if (window.pageData[pageId]) {
+                this.showPage(pageId, false);
+            }
+        });
+
+        this.initializeNavigation();
     }
 
-    // Navigate to a page with transition effects, loading overlay, and sound
-    showPage(pageId) {
+    showPage(pageId, pushState = true) {
         if (!window.pageData[pageId] || this.isTransitioning) return;
 
         this.soundManager.play('whoosh');
@@ -18,7 +32,6 @@ class PageManager {
         const mainContent = document.getElementById('mainContent');
         if (!mainContent) return;
 
-        // Start fade-out and slide-down transition
         mainContent.style.opacity = '0';
         mainContent.style.transform = 'translateY(20px)';
 
@@ -28,38 +41,38 @@ class PageManager {
 
             document.title = page.title;
 
-            // Inject new page content sections
             mainContent.innerHTML = `
                 <div class="left-section">${page.leftSection}</div>
                 <div class="center-section">${page.centerSection}</div>
                 <div class="right-section">${page.rightSection}</div>
             `;
 
-            // Update active nav link and add click sound handlers
             this.updateNavigation(pageId);
             this.ui.addHoverSounds();
 
-            // Fade-in and reset transform
+            // Push URL to browser history
+            if (pushState) {
+                const url = pageId === 'home' ? '/' : `/${pageId}`;
+                window.history.pushState({ page: pageId }, page.title, url);
+            }
+
             setTimeout(() => {
                 this.ui.hideLoading();
                 mainContent.style.opacity = '1';
                 mainContent.style.transform = 'translateY(0)';
-                setTimeout(() => {
-                    this.isTransitioning = false;
-                }, 200);
+                setTimeout(() => this.isTransitioning = false, 200);
             }, 300);
         }, 250);
     }
 
-    // Mark active navigation link based on current page
     updateNavigation(pageId) {
         const navLinks = document.querySelectorAll('.nav-link');
         navLinks.forEach(link => {
-            link.classList.toggle('active', link.dataset.page === pageId);
+            const linkPage = link.dataset.page;
+            link.classList.toggle('active', linkPage === pageId);
         });
     }
 
-    // Setup click listeners for navigation links
     initializeNavigation() {
         const navLinks = document.querySelectorAll('.nav-link');
         navLinks.forEach(link => {
@@ -73,5 +86,4 @@ class PageManager {
     }
 }
 
-// Export for use in other files
 window.PageManager = PageManager;

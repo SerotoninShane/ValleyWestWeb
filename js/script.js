@@ -5,7 +5,8 @@
         'js/ui-components.js',
         'js/page-data.js',
         'js/page-manager.js',
-        'js/orbit-animation.js'
+        'js/orbit-animation.js',
+        'js/transparent-sphere.js'
     ];
 
     // Load a script and return a Promise that resolves on load or rejects on error

@@ -1,0 +1,13 @@
+[build]
+  publish = "dist"  # or wherever your HTML and assets live
+  command = "npm run build"  # optional if you have a build step
+
+[[plugins]]
+package = "netlify-plugin-prerender-spa"
+  [plugins.inputs]
+  prerenderRoutes = [
+    "/",
+    "/about",
+    "/services",
+    "/contact"
+  ]
