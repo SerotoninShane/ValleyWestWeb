@@ -1,13 +1,10 @@
 [build]
-  publish = "dist"  # or wherever your HTML and assets live
-  command = "npm run build"  # optional if you have a build step
+  publish = "."  # Deploy from the root folder
+  command = "echo 'No build command needed for static site'"
 
 [[plugins]]
-package = "netlify-plugin-prerender-spa"
+  package = "netlify-plugin-prerender-spa"
   [plugins.inputs]
-  prerenderRoutes = [
-    "/",
-    "/about",
-    "/services",
-    "/contact"
-  ]
+    source = "."  # Plugin reads files from root
+    minifyHTMLOpts = true
+    routes = ["/", "/about", "/services", "/contact"]
