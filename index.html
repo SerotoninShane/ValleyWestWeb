@@ -266,11 +266,57 @@
     </div>
   </div>
 
-<!-- Your normal script (safe to defer) -->
-<!-- Your other scripts -->
-<script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.min.js" defer></script>
-<script src="js/transparent-sphere.js" defer></script>
+<!-- Normal scripts first -->
 <script src="js/script.js" defer></script>
+
+<!-- Lazy-load p5 and transparent-sphere optimized -->
+<script>
+window.addEventListener('DOMContentLoaded', () => {
+    const loadSphereScripts = async () => {
+        const loadScript = (src) => new Promise((resolve, reject) => {
+            const script = document.createElement('script');
+            script.src = src;
+            script.onload = () => {
+                resolve();
+            };
+            script.onerror = (err) => {
+                reject(err);
+            };
+            document.body.appendChild(script);
+        });
+
+        try {
+            // Load p5
+            await loadScript("https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.min.js");
+
+            // Load transparent sphere script
+            await loadScript("js/transparent-sphere.js");
+
+            // Ensure the parent container exists
+            const sphereContainer = document.getElementById('transparent-sphere');
+            if (!sphereContainer) {
+                console.warn("#transparent-sphere container not found");
+                return;
+            }
+
+            // Start the sphere
+            if (typeof startTransparentSphere === 'function') {
+                startTransparentSphere();
+            } else {
+                console.error('startTransparentSphere function is not defined after loading script');
+            }
+        } catch (err) {
+            console.error("Failed to load p5 or transparent-sphere:", err);
+        }
+    };
+
+    // Use requestIdleCallback if available, fallback to setTimeout
+    if ('requestIdleCallback' in window) {
+        requestIdleCallback(loadSphereScripts, { timeout: 2000 });
+    } else {
+        setTimeout(loadSphereScripts, 2000);
+    }
+});
 </script>
 
 

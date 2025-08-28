@@ -1505,9 +1505,8 @@ footer {
     position: absolute;
     top: 0;
     left: 0; /* Move origin to horizontal center */
-    transform: translateX(-50%); /* Center the canvas perfectly */
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;

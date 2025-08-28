@@ -1,33 +1,34 @@
 // js/transparent-sphere.js
-window.addEventListener('load', () => {
+
+function startTransparentSphere() {
     const transparentSphereSketch = (sketch) => {
         let txt;
         let sphereSize;
 
         // Function to calculate and cache sphere size
         const updateSphereSize = () => {
-            let maxWidth = 1920, minWidth = 400;
-            let maxFraction = 0.2, minFraction = 0.16;
-            let t = sketch.constrain((sketch.width - minWidth) / (maxWidth - minWidth), 0, 1);
-            let sphereFraction = sketch.lerp(minFraction, maxFraction, t);
+            const maxWidth = 1920, minWidth = 400;
+            const maxFraction = 0.2, minFraction = 0.16;
+            const t = sketch.constrain((sketch.width - minWidth) / (maxWidth - minWidth), 0, 1);
+            const sphereFraction = sketch.lerp(minFraction, maxFraction, t);
             sphereSize = Math.min(sketch.width, sketch.height) * sphereFraction;
         };
 
         sketch.setup = () => {
-            let canvas = sketch.createCanvas(sketch.windowWidth, sketch.windowHeight, sketch.WEBGL);
+            const canvas = sketch.createCanvas(sketch.windowWidth, sketch.windowHeight, sketch.WEBGL);
             canvas.parent('transparent-sphere');
 
             // Limit frame rate to 30fps
             sketch.frameRate(30);
 
-            let bufferWidth = 2000;
-            let bufferHeight = 1000;
-            let name = sketch.createGraphics(bufferWidth, bufferHeight);
+            const bufferWidth = 2000;
+            const bufferHeight = 1000;
+            const name = sketch.createGraphics(bufferWidth, bufferHeight);
             name.textFont('Courier New');
             name.textAlign(sketch.CENTER, sketch.CENTER);
             name.textSize(110);
 
-            let customText = "VALLEYWESTWEB";
+            const customText = "VALLEYWESTWEB";
 
             name.fill(0, 0, 0, 100);
             name.text(customText, name.width / 2 + 3, name.height / 2 + 3);
@@ -53,13 +54,13 @@ window.addEventListener('load', () => {
             sketch.fill(255, 255, 255, 10);
             sketch.drawingContext.enable(sketch.drawingContext.CULL_FACE);
             sketch.drawingContext.cullFace(sketch.drawingContext.BACK);
-            sketch.sphere(sphereSize, 16, 12);
+            sketch.sphere(sphereSize, 12, 8);
             sketch.pop();
 
             sketch.push();
             sketch.drawingContext.enable(sketch.drawingContext.CULL_FACE);
             sketch.drawingContext.cullFace(sketch.drawingContext.FRONT);
-            sketch.sphere(sphereSize, 16, 12);
+            sketch.sphere(sphereSize, 12, 8);
             sketch.pop();
         };
 
@@ -70,4 +71,4 @@ window.addEventListener('load', () => {
     };
 
     new p5(transparentSphereSketch);
-});
+}
