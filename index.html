@@ -13,20 +13,20 @@
   <link rel="canonical" href="https://valleywestweb.com/" />
 
   <!-- Favicon -->
-  <link rel="icon" href="Assets/vww.png" type="image/png" />
+  <link rel="icon" href="Assets/vww.webp" type="image/webp" />
 
   <!-- Open Graph / Social Sharing -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://valleywestweb.com/" />
   <meta property="og:title" content="Valley West Web | Arizona Web Design & Development" />
   <meta property="og:description" content="Valley West Web builds modern websites, web apps, and e-commerce solutions tailored to your business goals." />
-  <meta property="og:image" content="https://valleywestweb.com/Assets/vww.png" />
+  <meta property="og:image" content="https://valleywestweb.com/Assets/vww.webp" />
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Valley West Web | Arizona Web Design & Development" />
   <meta name="twitter:description" content="Valley West Web builds modern websites, web apps, and e-commerce solutions tailored to your business goals." />
-  <meta name="twitter:image" content="https://valleywestweb.com/Assets/vww.png" />
+  <meta name="twitter:image" content="https://valleywestweb.com/Assets/vww.webp" />
 
 <!-- Schema.org Logo (JSON-LD) -->
 <script type="application/ld+json">
@@ -35,7 +35,7 @@
   "@type": "WebDesignCompany",
   "name": "Valley West Web",
   "url": "https://valleywestweb.com",
-  "logo": "https://valleywestweb.com/Assets/vww.png",
+  "logo": "https://valleywestweb.com/Assets/vww.webp",
   "description": "Valley West Web LLC creates affordable, custom websites for entrepreneurs and small businesses across the Valley and beyond. We focus on collaborative design, transparent processes, and client-focused solutions.",
   "founder": {
     "@type": "Person",
@@ -69,7 +69,7 @@
   <!-- Intro Overlay -->
   <div id="introOverlay" aria-hidden="true">
     <div class="logo-animation">
-      <img src="Assets/vww.png" alt="Valley West Web Logo" />
+      <img src="Assets/vww.webp" alt="Valley West Web Logo" />
       <div class="intro-text">VALLEY WEST WEB</div>
     </div>
   </div>
@@ -98,7 +98,7 @@
     <!-- Logo Section -->
     <div class="logo-section">
       <div class="logo">
-        <img src="Assets/vww.png" alt="Valley West Web Logo" />
+        <img src="Assets/vww.webp" alt="Valley West Web Logo" />
       </div>
       <div class="vertical-logo">VALLEY WEST WEB</div>
     </div>
@@ -266,9 +266,12 @@
     </div>
   </div>
 
-  <script src="js/script.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.js"></script>
-  <script src="js/transparent-sphere.js"></script>
+<!-- Your normal script (safe to defer) -->
+<!-- Your other scripts -->
+<script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.min.js" defer></script>
+<script src="js/transparent-sphere.js" defer></script>
+<script src="js/script.js" defer></script>
+</script>
 
 
 </body>
