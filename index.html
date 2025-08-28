@@ -28,52 +28,54 @@
   <meta name="twitter:description" content="Valley West Web builds modern websites, web apps, and e-commerce solutions tailored to your business goals." />
   <meta name="twitter:image" content="https://valleywestweb.com/Assets/vww.webp" />
 
-<!-- Schema.org Logo (JSON-LD) -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebDesignCompany",
-  "name": "Valley West Web",
-  "url": "https://valleywestweb.com",
-  "logo": "https://valleywestweb.com/Assets/vww.webp",
-  "description": "Valley West Web LLC creates affordable, custom websites for entrepreneurs and small businesses across the Valley and beyond. We focus on collaborative design, transparent processes, and client-focused solutions.",
-  "founder": {
-    "@type": "Person",
-    "name": "Shane Bogue"
-  },
-  "contactPoint": {
-    "@type": "ContactPoint",
-    "email": "valleywestweb@gmail.com",
-    "telephone": "+1-623-445-1434",
-    "contactType": "customer service",
-    "areaServed": "US",
-    "availableLanguage": "English"
-  },
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "13208 W Monte Vista Dr",
-    "addressLocality": "Goodyear",
-    "addressRegion": "AZ",
-    "postalCode": "85395",
-    "addressCountry": "US"
-  },
-  "hasMap": "https://www.google.com/maps/search/?api=1&query=13208+W+Monte+Vista+Dr,+Goodyear,+AZ+85395",
-  "sameAs": []
-}
-</script>
+  <!-- Schema.org Logo (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebDesignCompany",
+    "name": "Valley West Web",
+    "url": "https://valleywestweb.com",
+    "logo": "https://valleywestweb.com/Assets/vww.webp",
+    "description": "Valley West Web LLC creates affordable, custom websites for entrepreneurs and small businesses across the Valley and beyond. We focus on collaborative design, transparent processes, and client-focused solutions.",
+    "founder": { "@type": "Person", "name": "Shane Bogue" },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "email": "valleywestweb@gmail.com",
+      "telephone": "+1-623-445-1434",
+      "contactType": "customer service",
+      "areaServed": "US",
+      "availableLanguage": "English"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "13208 W Monte Vista Dr",
+      "addressLocality": "Goodyear",
+      "addressRegion": "AZ",
+      "postalCode": "85395",
+      "addressCountry": "US"
+    },
+    "hasMap": "https://www.google.com/maps/search/?api=1&query=13208+W+Monte+Vista+Dr,+Goodyear,+AZ+85395",
+    "sameAs": []
+  }
+  </script>
 
-  <link rel="stylesheet" href="css/style.css" />
+  <!-- Preload Critical CSS -->
+  <link rel="preload" href="css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="css/style.css"></noscript>
+
+  <!-- Preload LCP Image -->
+  <link rel="preload" as="image" href="Assets/vww.webp">
 </head>
+
 <body>
 
-  <!-- Intro Overlay -->
   <div id="introOverlay" aria-hidden="true">
-    <div class="logo-animation">
-      <img src="Assets/vww.webp" alt="Valley West Web Logo" />
+    <!-- <div class="logo-animation">
+      <img src="Assets/vww.webp" alt="Valley West Web Logo" fetchpriority="high" />
       <div class="intro-text">VALLEY WEST WEB</div>
-    </div>
+    </div> -->
   </div>
-          <div id="transparent-sphere"></div>
+  <div id="transparent-sphere"></div>
   <div class="container">
 
     <!-- Blueprint Grid -->
@@ -98,7 +100,7 @@
     <!-- Logo Section -->
     <div class="logo-section">
       <div class="logo">
-        <img src="Assets/vww.webp" alt="Valley West Web Logo" />
+        <img src="Assets/vww.webp" alt="Valley West Web Logo" fetchpriority="high" />
       </div>
       <div class="vertical-logo">VALLEY WEST WEB</div>
     </div>
@@ -276,41 +278,28 @@ window.addEventListener('DOMContentLoaded', () => {
         const loadScript = (src) => new Promise((resolve, reject) => {
             const script = document.createElement('script');
             script.src = src;
-            script.onload = () => {
-                resolve();
-            };
-            script.onerror = (err) => {
-                reject(err);
-            };
+            script.onload = resolve;
+            script.onerror = reject;
             document.body.appendChild(script);
         });
 
         try {
-            // Load p5
             await loadScript("https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.min.js");
-
-            // Load transparent sphere script
             await loadScript("js/transparent-sphere.js");
 
-            // Ensure the parent container exists
             const sphereContainer = document.getElementById('transparent-sphere');
-            if (!sphereContainer) {
-                console.warn("#transparent-sphere container not found");
-                return;
-            }
+            if (!sphereContainer) { console.warn("#transparent-sphere not found"); return; }
 
-            // Start the sphere
             if (typeof startTransparentSphere === 'function') {
                 startTransparentSphere();
             } else {
-                console.error('startTransparentSphere function is not defined after loading script');
+                console.error('startTransparentSphere is not defined after loading script');
             }
         } catch (err) {
             console.error("Failed to load p5 or transparent-sphere:", err);
         }
     };
 
-    // Use requestIdleCallback if available, fallback to setTimeout
     if ('requestIdleCallback' in window) {
         requestIdleCallback(loadSphereScripts, { timeout: 2000 });
     } else {

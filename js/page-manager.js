@@ -61,7 +61,7 @@ class PageManager {
                 mainContent.style.opacity = '1';
                 mainContent.style.transform = 'translateY(0)';
                 setTimeout(() => this.isTransitioning = false, 200);
-            }, 300);
+            }, 150);
         }, 250);
     }
 

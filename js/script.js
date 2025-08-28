@@ -59,7 +59,7 @@ function initializeApp() {
                 introOverlay.remove();
                 if (mainContent) mainContent.style.opacity = 1;
             });
-        }, 1500);
+        }, 10);
     } else if (mainContent) {
         mainContent.style.opacity = 1;
     }

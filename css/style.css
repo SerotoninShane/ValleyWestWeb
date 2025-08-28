@@ -1017,7 +1017,7 @@ header {
    INTRO OVERLAY
    ================================ */
 
-#introOverlay {
+/* #introOverlay {
     position: fixed;
     top: 0; 
     left: 0; 
@@ -1030,39 +1030,39 @@ header {
     z-index: 9999;
     flex-direction: column;
     color: #888888;
-}
+} */
 
-#introOverlay::before {
+/* #introOverlay::before {
     content: "";
     position: absolute;
     inset: 0;
-    background: url('../Assets/topography.webp') repeat;
+    background: url('../Assets/topography.svg') repeat;
     opacity: 0.1;
     pointer-events: none;
     z-index: 1;
-}
+} */
 
-#introOverlay .logo-animation {
+/* #introOverlay .logo-animation {
     display: flex;
     flex-direction: column;
     align-items: center;
-}
+} */
 
-#introOverlay .logo-animation img {
+/* #introOverlay .logo-animation img {
     width: 300px;
     filter: brightness(0) saturate(100%) invert(30%) sepia(10%) saturate(100%) hue-rotate(170deg) brightness(60%) contrast(90%);
-    animation: logoZoomFade 1s ease forwards;
+    animation: logoZoomFade .1s ease forwards;
     z-index: 2;
-}
+} */
 
-#introOverlay .intro-text {
+/* #introOverlay .intro-text {
     font-weight: 600;
     font-size: 1.5rem;
     margin-top: 15px;
     opacity: 0;
     transform: translateY(20px);
-    animation: textSlideUpFade 1s ease forwards;
-}
+    animation: textSlideUpFade .1s ease forwards;
+} */
 
 /* ================================
    CSS ICONS
